@@ -1,66 +1,57 @@
-import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className={styles.main}>
+      <nav className={styles.navbar + " glass"}>
+        <div className={styles.logo}>
+          <span className="gold-text">FLORA</span> E-COMMERCE
+        </div>
+        <div className={styles.navLinks}>
+          <a href="#" className={styles.navLink}>COLLECTIONS</a>
+          <a href="#" className={styles.navLink}>BOUTIQUE</a>
+          <a href="#" className={styles.navLink}>STORY</a>
+          <button className={styles.cartBtn + " glow-hover"}>
+            CART <span className={styles.cartCount}>0</span>
+          </button>
+        </div>
+      </nav>
+
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.title}>
+            Exquisite <span className="gold-text">Artistry</span> <br />
+            For Every Moment
+          </h1>
+          <p className={styles.subtitle}>
+            Discover our curated collection of luxury floral arrangements and artisanal gifts, 
+            handcrafted to elevate your most precious celebrations.
           </p>
+          <div className={styles.ctaGroup}>
+            <button className={styles.primaryBtn + " glow-hover"}>
+              EXPLORE COLLECTIONS
+            </button>
+            <button className={styles.secondaryBtn}>
+              OUR STORY
+            </button>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        <div className={styles.heroImageContainer}>
+          <div className={styles.imagePlaceholder + " glass"}>
+            <div className={styles.glowOrb}></div>
+            <img 
+              src="/luxury_floral_hero.png" 
+              alt="Luxury Floral Arrangement" 
+              className={styles.heroImage}
             />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <footer className={styles.footer}>
+        <p>&copy; 2026 FLORA E-COMMERCE. ALL RIGHTS RESERVED.</p>
+      </footer>
+    </main>
   );
 }
