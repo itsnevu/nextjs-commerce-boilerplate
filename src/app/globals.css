@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
   --bg-main: #ffffff;
@@ -11,13 +11,17 @@
   --text-primary: #000000;
   --text-secondary: #666666;
   --border-subtle: #eeeeee;
-  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-bg: rgba(255, 255, 255, 0.6);
   --glass-border: rgba(0, 0, 0, 0.05);
   
   --font-heading: var(--font-playfair), serif;
   --font-body: var(--font-outfit), sans-serif;
   
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-main: 24px;
+  --radius-subtle: 12px;
+  --radius-pill: 9999px;
+  
+  --transition-smooth: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .dark {
@@ -29,7 +33,7 @@
   --text-primary: #ffffff;
   --text-secondary: #a0a0a0;
   --border-subtle: #222222;
-  --glass-bg: rgba(0, 0, 0, 0.8);
+  --glass-bg: rgba(0, 0, 0, 0.5);
   --glass-border: rgba(255, 255, 255, 0.1);
 }
 

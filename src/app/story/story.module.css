@@ -1,0 +1,139 @@
+.storyMain {
+  min-height: 100vh;
+  padding-top: 120px;
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.hero {
+  height: 70vh;
+  position: relative;
+  margin: 0 5% 8rem;
+  border-radius: var(--radius-main);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-family: var(--font-heading);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+}
+
+.section, .sectionInverted {
+  padding: 8rem 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
+  align-items: center;
+}
+
+.sectionInverted {
+  direction: rtl;
+}
+
+.sectionInverted > * {
+  direction: ltr;
+}
+
+.textBlock h2 {
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.textBlock h3 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.textBlock p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.imageContainer {
+  position: relative;
+  height: 600px;
+  border-radius: var(--radius-main);
+  overflow: hidden;
+  background: var(--bg-subtle);
+}
+
+.quoteSection {
+  padding: 10rem 5%;
+  text-align: center;
+  background: var(--bg-subtle);
+}
+
+.quoteText {
+  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  max-width: 1000px;
+  margin: 0 auto;
+  line-height: 1.4;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+  padding: 8rem 5%;
+}
+
+.valueCard h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
+}
+
+.valueCard p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+  .section, .sectionInverted {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 4rem 5%;
+  }
+  
+  .imageContainer {
+    height: 400px;
+  }
+  
+  .valuesGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

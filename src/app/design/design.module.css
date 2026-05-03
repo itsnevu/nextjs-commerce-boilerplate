@@ -1,0 +1,135 @@
+.designMain {
+  min-height: 100vh;
+  padding-top: 120px;
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.hero {
+  height: 60vh;
+  position: relative;
+  margin: 0 5% 6rem;
+  border-radius: var(--radius-main);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 8%;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.heroDescription {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.philosophyGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border-subtle);
+  margin: 0 5% 8rem;
+  border: 1px solid var(--border-subtle);
+}
+
+.philosophyCard {
+  background: var(--bg-main);
+  padding: 6rem 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardNumber {
+  font-family: 'Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.philosophyCard h3 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.philosophyCard p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.materialSection {
+  padding: 10rem 5%;
+  background: var(--bg-subtle);
+  text-align: center;
+}
+
+.materialHeader h2 {
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  color: var(--accent-primary);
+}
+
+.materialHeader h3 {
+  font-size: 3rem;
+  margin-bottom: 5rem;
+}
+
+.materials {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.materialItem {
+  text-align: left;
+}
+
+.materialItem h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+}
+
+.materialItem p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .philosophyGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .materials {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .materials {
+    grid-template-columns: 1fr;
+  }
+}

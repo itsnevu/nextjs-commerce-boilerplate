@@ -1,31 +1,18 @@
+import Image from "next/image";
 import styles from "./page.module.css";
 import ProductCard from "@/components/modules/product/product-card";
-import { Shield, Truck, Gift, Globe, Star, Quote } from "lucide-react";
+import { Shield, Truck, Gift, Globe, Star, Quote, MessageCircle } from "lucide-react";
 
 export default function Home() {
   const featuredProducts = [
-    { id: "1", name: "Designer Lounge Chair", price: 789000, image: "/hero-placeholder.png", slug: "designer-chair", category: "FURNITURE" },
-    { id: "2", name: "Architectural Floor Lamp", price: 1560000, image: "/hero-placeholder.png", slug: "floor-lamp", category: "LIGHTING" },
-    { id: "3", name: "Minimalist Marble Desk", price: 1938000, image: "/hero-placeholder.png", slug: "marble-desk", category: "INTERIOR" },
-    { id: "4", name: "Artisanal Ceramic Vase", price: 4900000, image: "/hero-placeholder.png", slug: "ceramic-vase", category: "DECOR" },
+    { id: "1", name: "Designer Lounge Chair", price: 4750000, image: "/hero-placeholder.png", slug: "designer-chair", category: "FURNITURE" },
+    { id: "2", name: "Architectural Floor Lamp", price: 2250000, image: "/hero-placeholder.png", slug: "floor-lamp", category: "LIGHTING" },
+    { id: "3", name: "Minimalist Marble Desk", price: 8900000, image: "/hero-placeholder.png", slug: "marble-desk", category: "INTERIOR" },
+    { id: "4", name: "Artisanal Ceramic Vase", price: 1250000, image: "/hero-placeholder.png", slug: "ceramic-vase", category: "DECOR" },
   ];
 
   return (
     <main className={styles.main}>
-      <nav className={styles.navbar + " glass"}>
-        <div className={styles.logo}>
-          <span className="mono-text">LUXE</span> E-COMMERCE
-        </div>
-        <div className={styles.navLinks}>
-          <a href="#" className={styles.navLink}>COLLECTIONS</a>
-          <a href="#" className={styles.navLink}>DESIGN</a>
-          <a href="#" className={styles.navLink}>STORY</a>
-          <button className={styles.cartBtn + " glow-hover"}>
-            CART <span className={styles.cartCount}>0</span>
-          </button>
-        </div>
-      </nav>
-
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
@@ -50,10 +37,13 @@ export default function Home() {
         <div className={styles.heroImageContainer}>
           <div className={styles.imagePlaceholder + " glass"}>
             <div className={styles.glowOrb}></div>
-            <img 
+            <Image 
               src="/hero-placeholder.png" 
-              alt="Luxury Minimalist Design" 
+              alt="Luxury Interior Design" 
+              fill 
               className={styles.heroImage}
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
         </div>
@@ -62,31 +52,31 @@ export default function Home() {
       {/* Features Bar */}
       <section className={styles.featuresBar + " glass"}>
         <div className={styles.featureItem}>
-          <Shield className={styles.featureIcon} />
+          <Shield className={styles.featureIcon} strokeWidth={1.5} />
           <div>
-            <h3>15 Years Warranty</h3>
+            <h3>Lifetime Warranty</h3>
             <p>Quality guaranteed.</p>
           </div>
         </div>
         <div className={styles.featureItem}>
-          <Truck className={styles.featureIcon} />
+          <Truck className={styles.featureIcon} strokeWidth={1.5} />
           <div>
-            <h3>Free Delivery</h3>
-            <p>JABODETABEK area.</p>
+            <h3>Global Shipping</h3>
+            <p>Doorstep delivery.</p>
           </div>
         </div>
         <div className={styles.featureItem}>
-          <Gift className={styles.featureIcon} />
+          <Gift className={styles.featureIcon} strokeWidth={1.5} />
           <div>
-            <h3>Special Bonus</h3>
-            <p>Complimentary pillows.</p>
+            <h3>Premium Rewards</h3>
+            <p>Exclusive member benefits.</p>
           </div>
         </div>
         <div className={styles.featureItem}>
-          <Globe className={styles.featureIcon} />
+          <Globe className={styles.featureIcon} strokeWidth={1.5} />
           <div>
-            <h3>National Shipping</h3>
-            <p>Across Indonesia.</p>
+            <h3>Sustainable</h3>
+            <p>Ethically sourced.</p>
           </div>
         </div>
       </section>
@@ -110,55 +100,44 @@ export default function Home() {
           <h2 className={styles.sectionTitle}>Client <span className="mono-text">Voices</span></h2>
         </div>
         <div className={styles.testimonialGrid}>
-          {[1, 2, 3].map((i) => (
+          {[
+            { name: "Arif Budiman", text: "Kualitas produknya luar biasa. Detail pengerjaannya sangat rapi dan memberikan kesan mewah pada ruangan saya." },
+            { name: "Siti Sarah", text: "Desain yang sangat minimalis namun tetap fungsional. Sangat cocok dengan konsep rumah modern saya." },
+            { name: "Kevin Sanjaya", text: "Pelayanan sangat profesional dan pengiriman tepat waktu. Sangat merekomendasikan LUXE untuk interior rumah." },
+            { name: "Dewi Lestari", text: "Benar-benar mengubah suasana rumah menjadi lebih berkelas. Setiap tamu yang datang selalu memuji furniture-nya." },
+            { name: "Budi Santoso", text: "Material yang digunakan terasa sangat premium. Ini adalah investasi terbaik untuk dekorasi rumah saya." },
+            { name: "Maya Putri", text: "Suka sekali dengan konsep megamenu-nya, memudahkan saya mencari kategori yang saya butuhkan. Produknya pun eksklusif." },
+          ].map((t, i) => (
             <div key={i} className={styles.testimonialCard + " glass"}>
               <Quote className={styles.quoteIcon} />
-              <p className={styles.testimonialText}>
-                "The design philosophy is evident in every detail. It's rare to find a brand that balances form and function so perfectly."
-              </p>
+              <p className={styles.testimonialText}>"{t.text}"</p>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.stars}>
                   {[...Array(5)].map((_, idx) => <Star key={idx} size={14} fill="currentColor" color="currentColor" />)}
                 </div>
-                <h4>Design Partner {i}</h4>
+                <h4>{t.name}</h4>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.footerGrid}>
-          <div className={styles.footerBrand}>
-            <h2 className="mono-text">LUXE</h2>
-            <p>Defining your environment, living well. Luxury design for the modern era.</p>
+      {/* Contact CTA Section */}
+      <section className={styles.contactSection}>
+        <div className={styles.contactContainer + " glass"}>
+          <div className={styles.contactBrand}>
+            <h2><span className="mono-text">LUXE</span> DESIGN</h2>
           </div>
-          <div className={styles.footerLinks}>
-            <h4>RESOURCES</h4>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">FAQ</a>
-          </div>
-          <div className={styles.footerLinks}>
-            <h4>COMPANY</h4>
-            <a href="#">Our Story</a>
-            <a href="#">Contact Us</a>
-            <a href="#">Showrooms</a>
-          </div>
-          <div className={styles.footerSocial}>
-            <h4>SECURE PAYMENT</h4>
-            <div className={styles.paymentLogos}>
-              <div className={styles.paymentPlaceholder}>VISA</div>
-              <div className={styles.paymentPlaceholder}>AMEX</div>
-              <div className={styles.paymentPlaceholder}>STRIPE</div>
-            </div>
+          <div className={styles.contactAction}>
+            <p>Hubungi Kami</p>
+            <a href="https://wa.me/628123456789" className={styles.whatsappBtn}>
+              <MessageCircle size={18} />
+              Whatsapp
+            </a>
           </div>
         </div>
-        <div className={styles.footerBottom}>
-          <p>&copy; 2026 LUXE E-COMMERCE. ALL RIGHTS RESERVED.</p>
-        </div>
-      </footer>
+      </section>
+
     </main>
   );
 }

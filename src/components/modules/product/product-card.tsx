@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShoppingCart, Eye } from 'lucide-react';
+import { ShoppingBag, Eye } from 'lucide-react';
 import { useCartStore } from '@/lib/store/use-cart-store';
+import { useToastStore } from '@/lib/store/use-toast-store';
 
 interface ProductCardProps {
   product: {
@@ -17,8 +18,9 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const addItem = useCartStore((state) => state.addItem);
-
+  const { addItem } = useCartStore();
+  const { showToast } = useToastStore();
+  
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     addItem({
@@ -26,13 +28,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       name: product.name,
       price: product.price,
       image: product.image,
-      quantity: 1,
       slug: product.slug,
+      quantity: 1
     });
+    showToast(product.name, product.image);
   };
 
   return (
-    <div className="group relative bg-white dark:bg-zinc-900 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 transition-all hover:shadow-lg">
+    <div className="group relative bg-white dark:bg-zinc-900 rounded-main overflow-hidden border border-zinc-200 dark:border-zinc-800 transition-all hover:shadow-lg">
       <Link href={`/product/${product.slug}`} className="block">
         <div className="relative aspect-square overflow-hidden bg-zinc-100 dark:bg-zinc-800">
           <Image
@@ -62,14 +65,14 @@ export default function ProductCard({ product }: ProductCardProps) {
         </Link>
         <div className="mt-2 flex items-center justify-between">
           <span className="text-lg font-bold text-zinc-900 dark:text-white">
-            ${new Intl.NumberFormat('en-US').format(product.price)}
+            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(product.price)}
           </span>
           <button
             onClick={handleAddToCart}
-            className="p-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-lg hover:opacity-90 transition-opacity"
-            title="Add to Cart"
+            className="p-2 border border-zinc-200 dark:border-zinc-800 rounded-full text-zinc-600 dark:text-zinc-300 hover:bg-zinc-900 dark:hover:bg-white hover:text-white dark:hover:text-zinc-900 transition-all"
+            title="Add to Bag"
           >
-            <ShoppingCart size={18} />
+            <ShoppingBag size={18} strokeWidth={1.5} />
           </button>
         </div>
       </div>

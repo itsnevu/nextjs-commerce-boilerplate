@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   description: "A curated collection of high-end essentials and artisanal designs, carefully selected to elevate your everyday environment.",
 };
 
+import Navbar from "@/components/layout/navbar";
+import Footer from "@/components/layout/footer";
+import Toast from "@/components/ui/toast";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,7 +31,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${outfit.variable} ${playfair.variable}`} suppressHydrationWarning>
-      <body>{children}</body>
+      <body className="antialiased">
+        <Navbar />
+        {children}
+        <Footer />
+        <Toast />
+      </body>
     </html>
   );
 }
