@@ -1,17 +1,20 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ShoppingBag, Diamond, Search, X } from 'lucide-react';
+import { ShoppingBag, Diamond, Search, X, Heart } from 'lucide-react';
 import { useCartStore } from '@/lib/store/use-cart-store';
+import { useWishlistStore } from '@/lib/store/use-wishlist-store';
 import { siteConfig } from '@/config/site';
 import styles from '@/app/page.module.css';
 import CartDrawer from '@/components/modules/cart/cart-drawer';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { getItemCount } = useCartStore();
+  const { items: wishlistItems } = useWishlistStore();
 
   useEffect(() => {
     setMounted(true);
@@ -70,6 +73,15 @@ export default function Navbar() {
                 {isSearchOpen ? <X size={18} /> : <Search size={18} strokeWidth={1.5} />}
               </button>
             </div>
+
+            <Link 
+              href="/wishlist"
+              className={styles.cartBtn}
+              style={{ marginRight: '0.5rem' }}
+            >
+              <Heart size={18} strokeWidth={1.5} />
+              {mounted && wishlistItems.length > 0 && <span className={styles.cartCount}>{wishlistItems.length}</span>}
+            </Link>
 
             <button 
               className={styles.cartBtn}

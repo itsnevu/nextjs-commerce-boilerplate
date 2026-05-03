@@ -6,6 +6,7 @@ import { Filter, X } from 'lucide-react';
 import Link from 'next/link';
 import ShopFilters from '@/components/modules/shop/shop-filters';
 import { siteConfig } from '@/config/site';
+import { mockProducts } from '@/lib/mocks';
 
 async function getProducts(search?: string, category?: string) {
   if (!process.env.DATABASE_URL) return [];
@@ -29,7 +30,6 @@ async function getProducts(search?: string, category?: string) {
     });
     return products;
   } catch (error) {
-    // Fail silently and return empty array to trigger mock data fallback
     return [];
   }
 }
@@ -42,15 +42,6 @@ async function getCategories() {
     return [];
   }
 }
-
-const mockProducts = [
-  { id: "1", name: "Designer Lounge Chair", price: 4750000, image: "/chair.png", slug: "designer-chair", category: { name: "FURNITURE" } },
-  { id: "2", name: "Architectural Floor Lamp", price: 2250000, image: "/lamp.png", slug: "floor-lamp", category: { name: "LIGHTING" } },
-  { id: "3", name: "Minimalist Marble Desk", price: 8900000, image: "/desk.png", slug: "marble-desk", category: { name: "INTERIOR" } },
-  { id: "4", name: "Artisanal Ceramic Vase", price: 1250000, image: "/vase.png", slug: "ceramic-vase", category: { name: "DECOR" } },
-  { id: "5", name: "Premium Velvet Sofa", price: 12500000, image: "/hero.png", slug: "velvet-sofa", category: { name: "FURNITURE" } },
-  { id: "6", name: "Geometric Wall Sconce", price: 1750000, image: "/lamp.png", slug: "wall-sconce", category: { name: "LIGHTING" } },
-];
 
 export default async function ShopPage({
   searchParams,

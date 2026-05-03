@@ -3,13 +3,11 @@ import styles from "./page.module.css";
 import ProductCard from "@/components/modules/product/product-card";
 import { Shield, Truck, Gift, Globe, Star, Quote, MessageCircle } from "lucide-react";
 
+import { siteConfig } from "@/config/site";
+import { mockProducts } from "@/lib/mocks";
+
 export default function Home() {
-  const featuredProducts = [
-    { id: "1", name: "Designer Lounge Chair", price: 4750000, image: "/chair.png", slug: "designer-chair", category: "FURNITURE" },
-    { id: "2", name: "Architectural Floor Lamp", price: 2250000, image: "/lamp.png", slug: "floor-lamp", category: "LIGHTING" },
-    { id: "3", name: "Minimalist Marble Desk", price: 8900000, image: "/desk.png", slug: "marble-desk", category: "INTERIOR" },
-    { id: "4", name: "Artisanal Ceramic Vase", price: 1250000, image: "/vase.png", slug: "ceramic-vase", category: "DECOR" },
-  ];
+  const featuredProducts = mockProducts.slice(0, 4);
 
   return (
     <main className={styles.main}>
@@ -21,8 +19,7 @@ export default function Home() {
             For Modern Living
           </h1>
           <p className={styles.subtitle}>
-            Discover our collection of high-end essentials and artisanal designs, 
-            carefully selected to elevate your everyday environment.
+            {siteConfig.brand.tagline}
           </p>
           <div className={styles.ctaGroup}>
             <a href="/shop" className={styles.primaryBtn + " glow-hover"}>
@@ -89,7 +86,7 @@ export default function Home() {
         </div>
         <div className={styles.productGrid}>
           {featuredProducts.map((p) => (
-            <ProductCard key={p.id} product={p} />
+            <ProductCard key={p.id} product={p as any} />
           ))}
         </div>
       </section>
@@ -126,11 +123,11 @@ export default function Home() {
       <section className={styles.contactSection}>
         <div className={styles.contactContainer + " glass"}>
           <div className={styles.contactBrand}>
-            <h2><span className="mono-text">LUXE</span> DESIGN</h2>
+            <h2><span className="mono-text">{siteConfig.name}</span> DESIGN</h2>
           </div>
           <div className={styles.contactAction}>
             <p>Hubungi Kami</p>
-            <a href="https://wa.me/628123456789" className={styles.whatsappBtn}>
+            <a href={`https://wa.me/${siteConfig.contact.whatsapp}`} className={styles.whatsappBtn}>
               <MessageCircle size={18} />
               Whatsapp
             </a>

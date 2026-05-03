@@ -8,18 +8,14 @@ import ProductCard from '@/components/modules/product/product-card';
 import styles from '@/app/page.module.css';
 import Link from 'next/link';
 
+import { siteConfig } from '@/config/site';
+import { mockProducts } from '@/lib/mocks';
+
 interface ProductPageProps {
   params: Promise<{
     slug: string;
   }>;
 }
-
-const mockProducts = [
-  { id: "1", name: "Designer Lounge Chair", price: 4750000, description: "Experience ultimate comfort with our signature Designer Lounge Chair. Crafted with premium materials and ergonomic design, this piece is a perfect blend of luxury and functionality.", images: ["/chair.png"], slug: "designer-chair", category: { name: "FURNITURE" } },
-  { id: "2", name: "Architectural Floor Lamp", price: 2250000, description: "Illuminate your space with the Architectural Floor Lamp. Its sleek, minimalist design provides both direct and ambient lighting, making it a statement piece in any modern interior.", images: ["/lamp.png"], slug: "floor-lamp", category: { name: "LIGHTING" } },
-  { id: "3", name: "Minimalist Marble Desk", price: 8900000, description: "Elevate your workspace with the Minimalist Marble Desk. Featuring a solid marble top and slender steel legs, it offers a sophisticated surface for creativity and focus.", images: ["/desk.png"], slug: "marble-desk", category: { name: "INTERIOR" } },
-  { id: "4", name: "Artisanal Ceramic Vase", price: 1250000, description: "A piece of art for your home. This Artisanal Ceramic Vase is hand-thrown and finished with a unique glaze, capturing the essence of natural beauty and craftsmanship.", images: ["/vase.png"], slug: "ceramic-vase", category: { name: "DECOR" } },
-];
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -96,6 +92,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <span className="text-[10px] text-zinc-400 font-bold tracking-widest uppercase">
                 IN STOCK
               </span>
+            </div>
+
+            {/* Sakti Urgency Engine */}
+            <div className="flex flex-wrap gap-3 mb-6">
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-50 dark:bg-amber-900/10 text-amber-600 dark:text-amber-400 rounded-full text-[9px] font-bold tracking-widest uppercase border border-amber-100 dark:border-amber-900/20">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                </span>
+                {Math.floor(Math.random() * 12) + 5} People looking at this now
+              </div>
+              <div className="px-3 py-1.5 bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400 rounded-full text-[9px] font-bold tracking-widest uppercase border border-red-100 dark:border-red-900/20">
+                Low Stock: Only {Math.floor(Math.random() * 4) + 1} Left
+              </div>
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold text-zinc-900 dark:text-white mb-6 leading-tight">

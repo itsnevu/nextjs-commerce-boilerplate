@@ -34,6 +34,31 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         </div>
 
         <div className={styles.content}>
+          {/* Sakti Free Shipping Progress */}
+          {items.length > 0 && (
+            <div style={{ padding: '1.5rem', background: 'var(--bg-subtle)', borderBottom: '1px solid var(--border-subtle)', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontWeight: '700', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+                <span style={{ color: 'var(--text-primary)' }}>{getTotalPrice() >= 10000000 ? 'FREE SHIPPING UNLOCKED' : 'FREE SHIPPING PROGRESS'}</span>
+                <span>{Math.min(100, (getTotalPrice() / 10000000) * 100).toFixed(0)}%</span>
+              </div>
+              <div style={{ height: '6px', width: '100%', background: 'var(--border-subtle)', borderRadius: '10px', overflow: 'hidden' }}>
+                <div 
+                  style={{ 
+                    height: '100%', 
+                    background: 'var(--accent-primary)', 
+                    width: `${Math.min(100, (getTotalPrice() / 10000000) * 100)}%`,
+                    transition: 'width 1s ease-out'
+                  }} 
+                />
+              </div>
+              {getTotalPrice() < 10000000 && (
+                <p style={{ fontSize: '10px', color: 'var(--text-secondary)', marginTop: '0.75rem', fontStyle: 'italic' }}>
+                  Add {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(10000000 - getTotalPrice())} more to enjoy <strong style={{ color: 'var(--accent-primary)' }}>FREE SHIPPING</strong>
+                </p>
+              )}
+            </div>
+          )}
+
           {items.length === 0 ? (
             <div className={styles.emptyState}>
               <p>Your bag is empty</p>

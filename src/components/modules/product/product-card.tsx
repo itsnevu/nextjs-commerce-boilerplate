@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShoppingBag, Eye } from 'lucide-react';
+import { ShoppingBag, Eye, Heart } from 'lucide-react';
 import { useCartStore } from '@/lib/store/use-cart-store';
 import { useToastStore } from '@/lib/store/use-toast-store';
+import { useWishlistStore } from '@/lib/store/use-wishlist-store';
+import { useState, useEffect } from 'react';
 
 interface ProductCardProps {
   product: {
@@ -20,6 +22,12 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCartStore();
   const { showToast } = useToastStore();
+  const { toggleItem, isInWishlist } = useWishlistStore();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -34,6 +42,18 @@ export default function ProductCard({ product }: ProductCardProps) {
     showToast(product.name, product.image);
   };
 
+  const handleToggleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    toggleItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      slug: product.slug,
+      category: product.category
+    });
+  };
+
   return (
     <div className="group relative bg-white dark:bg-zinc-900 rounded-main overflow-hidden border border-zinc-200 dark:border-zinc-800 transition-all hover:shadow-lg">
       <Link href={`/product/${product.slug}`} className="block">
@@ -43,7 +63,17 @@ export default function ProductCard({ product }: ProductCardProps) {
             alt={product.name}
             fill
             className="object-cover transition-transform group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
+          
+          {/* Wishlist Button */}
+          <button 
+            onClick={handleToggleWishlist}
+            className={`absolute top-4 right-4 z-10 p-2 rounded-full glass transition-all ${mounted && isInWishlist(product.id) ? 'text-red-500 scale-110' : 'text-zinc-500 hover:text-red-500'}`}
+            title="Add to Wishlist"
+          >
+            <Heart size={18} fill={mounted && isInWishlist(product.id) ? "currentColor" : "none"} strokeWidth={1.5} />
+          </button>
           <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
             <div className="p-2 bg-white dark:bg-zinc-900 rounded-full text-zinc-900 dark:text-white transform translate-y-4 group-hover:translate-y-0 transition-transform">
               <Eye size={20} />
