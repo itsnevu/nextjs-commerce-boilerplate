@@ -8,6 +8,7 @@ import { PaymentService } from '@/lib/payment-service';
 import { useRouter } from 'next/navigation';
 import { MapPin, Truck, CreditCard, Lock, Loader2, ShieldCheck, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { formatPrice } from '@/lib/utils';
 
 export default function CheckoutPage() {
   const { items, getTotalPrice, clearCart } = useCartStore();
@@ -231,15 +232,15 @@ export default function CheckoutPage() {
           <div className={styles.summary}>
             <div className={styles.summaryRow}>
               <span className="text-zinc-500">Subtotal</span>
-              <span className="font-medium">{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(getTotalPrice())}</span>
+              <span className="font-medium">{formatPrice(getTotalPrice())}</span>
             </div>
             <div className={styles.summaryRow}>
               <span className="text-zinc-500">Shipping</span>
-              <span className="font-medium">{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(shipping)}</span>
+              <span className="font-medium">{formatPrice(shipping)}</span>
             </div>
             <div className={styles.totalRow + " border-t border-zinc-900 dark:border-white pt-6 mt-6"}>
               <span className="text-sm font-normal tracking-widest">TOTAL</span>
-              <span>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(getTotalPrice() + shipping)}</span>
+              <span>{formatPrice(getTotalPrice() + shipping)}</span>
             </div>
           </div>
 

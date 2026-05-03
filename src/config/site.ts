@@ -54,7 +54,7 @@ export const siteConfig = {
     email: "hello@luxe.design",
     phone: "+62 812 3456 789",
     whatsapp: "628123456789",
-    address: "Jl. Senopati No. 88, Jakarta Selatan",
+    address: "Senopati St. No. 88, South Jakarta, Indonesia",
     socials: {
       instagram: "https://instagram.com/luxe.design",
       twitter: "https://twitter.com/luxe.design",
@@ -83,12 +83,12 @@ export const siteConfig = {
       { title: "24/7 Support", desc: "Dedicated concierge service" }
     ],
     testimonials: [
-      { name: "Arif Budiman", text: "Kualitas produknya luar biasa. Detail pengerjaannya sangat rapi dan memberikan kesan mewah pada ruangan saya." },
-      { name: "Siti Sarah", text: "Desain yang sangat minimalis namun tetap fungsional. Sangat cocok dengan konsep rumah modern saya." },
-      { name: "Kevin Sanjaya", text: "Pelayanan sangat profesional dan pengiriman tepat waktu. Sangat merekomendasikan LUXE untuk interior rumah." },
-      { name: "Dewi Lestari", text: "Benar-benar mengubah suasana rumah menjadi lebih berkelas. Setiap tamu yang datang selalu memuji furniture-nya." },
-      { name: "Budi Santoso", text: "Material yang digunakan terasa sangat premium. Ini adalah investasi terbaik untuk dekorasi rumah saya." },
-      { name: "Maya Putri", text: "Suka sekali dengan konsep megamenu-nya, memudahkan saya mencari kategori yang saya butuhkan. Produknya pun eksklusif." },
+      { name: "Alexander Wright", text: "The product quality is exceptional. The craftsmanship is incredibly precise and brings a luxurious feel to my space." },
+      { name: "Sarah Jenkins", text: "Beautifully minimalist yet functional design. It fits perfectly with my modern home concept." },
+      { name: "Kevin Sanjaya", text: "Professional service and timely delivery. I highly recommend LUXE for premium home interiors." },
+      { name: "Elena Rodriguez", text: "Truly transformed the atmosphere of my home into something more classy. Guests always compliment the furniture." },
+      { name: "David Chen", text: "The materials used feel very premium. This is the best investment for my home decoration." },
+      { name: "Maya Putri", text: "I love the navigation concept, making it easy to find categories. The products are truly exclusive." },
     ]
   },
 

@@ -7,6 +7,7 @@ import { useCartStore } from '@/lib/store/use-cart-store';
 import { useToastStore } from '@/lib/store/use-toast-store';
 import { useWishlistStore } from '@/lib/store/use-wishlist-store';
 import { useState, useEffect } from 'react';
+import { formatPrice } from '@/lib/utils';
 
 interface ProductCardProps {
   product: {
@@ -95,7 +96,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </Link>
         <div className="mt-2 flex items-center justify-between">
           <span className="text-lg font-bold text-zinc-900 dark:text-white">
-            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(product.price)}
+            {formatPrice(product.price)}
           </span>
           <button
             onClick={handleAddToCart}

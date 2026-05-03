@@ -33,32 +33,36 @@ export default function ProductActions({ product }: ProductActionsProps) {
   };
 
   return (
-    <div className="flex flex-col gap-6 mt-8">
-      <div className="flex items-center gap-4">
-        <div className="flex items-center border border-zinc-200 dark:border-zinc-800 rounded-full px-4 py-2 bg-zinc-50 dark:bg-zinc-900/50">
+    <div className="flex flex-col gap-10">
+      <div className="flex items-center gap-8">
+        <div className="flex items-center border-2 border-black rounded-2xl overflow-hidden bg-white p-1 shadow-sm">
           <button 
             onClick={() => setQuantity(Math.max(1, quantity - 1))}
-            className="p-1 hover:text-black dark:hover:text-white transition-colors"
+            className="w-12 h-12 flex items-center justify-center rounded-xl hover:bg-black hover:text-white transition-all text-black"
           >
-            <Minus size={18} />
+            <Minus size={18} strokeWidth={2.5} />
           </button>
-          <span className="w-12 text-center font-bold text-lg">{quantity}</span>
+          <span className="w-16 text-center font-bold text-2xl tabular-nums text-black">{quantity}</span>
           <button 
             onClick={() => setQuantity(quantity + 1)}
-            className="p-1 hover:text-black dark:hover:text-white transition-colors"
+            className="w-12 h-12 flex items-center justify-center hover:bg-black hover:text-white transition-all text-black"
           >
-            <Plus size={18} />
+            <Plus size={18} strokeWidth={2.5} />
           </button>
         </div>
       </div>
 
       <button 
         onClick={handleAddToCart}
-        className="w-full py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-black/10"
+        className="group relative w-full py-6 bg-black text-white rounded-2xl font-bold text-xs tracking-[0.4em] flex items-center justify-center gap-4 hover:shadow-2xl hover:shadow-black/20 active:scale-[0.98] transition-all uppercase"
       >
-        <ShoppingBag size={20} />
+        <ShoppingBag size={20} strokeWidth={2.5} />
         ADD TO BAG
       </button>
+      
+      <p className="text-[10px] text-zinc-400 font-bold tracking-[0.2em] uppercase text-center">
+        Secure Transaction & Certified Studio Quality
+      </p>
     </div>
   );
 }

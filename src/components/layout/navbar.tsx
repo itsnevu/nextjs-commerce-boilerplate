@@ -71,10 +71,10 @@ export default function Navbar() {
             </div>
           </div>
           <div className={styles.navItem}>
-            <Link href="/design" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>DESIGN</Link>
+            <Link href="/story" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>STORY</Link>
           </div>
           <div className={styles.navItem}>
-            <Link href="/story" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>STORY</Link>
+            <Link href="/contact" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
           </div>
         </div>
 
@@ -86,11 +86,12 @@ export default function Navbar() {
           <div className={`${styles.searchWrapper} ${isSearchOpen ? styles.searchActive : ''}`}>
             <input 
               type="text" 
-              placeholder="Search products..." 
+              placeholder="Search pieces..." 
               className={styles.searchInput} 
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  window.location.href = `/shop?search=${(e.target as HTMLInputElement).value}`;
+                  const query = (e.target as HTMLInputElement).value;
+                  window.location.href = `/shop?search=${encodeURIComponent(query)}`;
                 }
               }}
             />

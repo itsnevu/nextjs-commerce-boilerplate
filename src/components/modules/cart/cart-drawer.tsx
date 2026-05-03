@@ -4,6 +4,7 @@ import { X, ShoppingBag, Trash2, Plus, Minus } from 'lucide-react';
 import { useCartStore } from '@/lib/store/use-cart-store';
 import styles from './cart-drawer.module.css';
 import Link from 'next/link';
+import { formatPrice } from '@/lib/utils';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -53,7 +54,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               </div>
               {getTotalPrice() < 10000000 && (
                 <p style={{ fontSize: '10px', color: 'var(--text-secondary)', marginTop: '0.75rem', fontStyle: 'italic' }}>
-                  Add {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(10000000 - getTotalPrice())} more to enjoy <strong style={{ color: 'var(--accent-primary)' }}>FREE SHIPPING</strong>
+                  Add {formatPrice(10000000 - getTotalPrice())} more to enjoy <strong style={{ color: 'var(--accent-primary)' }}>FREE SHIPPING</strong>
                 </p>
               )}
             </div>
@@ -104,7 +105,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <div className={styles.summary}>
               <span>SUBTOTAL</span>
               <span className={styles.totalAmount}>
-                {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(getTotalPrice())}
+                {formatPrice(getTotalPrice())}
               </span>
             </div>
             <p className={styles.shippingNote}>Shipping and taxes calculated at checkout.</p>
