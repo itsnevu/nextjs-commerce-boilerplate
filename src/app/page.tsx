@@ -14,11 +14,11 @@ export default function Home() {
     <main className={styles.main}>
       <nav className={styles.navbar + " glass"}>
         <div className={styles.logo}>
-          <span className="mono-text">FLORA</span> E-COMMERCE
+          <span className="mono-text">LUXE</span> E-COMMERCE
         </div>
         <div className={styles.navLinks}>
           <a href="#" className={styles.navLink}>COLLECTIONS</a>
-          <a href="#" className={styles.navLink}>BOUTIQUE</a>
+          <a href="#" className={styles.navLink}>DESIGN</a>
           <a href="#" className={styles.navLink}>STORY</a>
           <button className={styles.cartBtn + " glow-hover"}>
             CART <span className={styles.cartCount}>0</span>
@@ -30,19 +30,19 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1 className={styles.title}>
-            Exquisite <span className="mono-text">Artistry</span> <br />
-            For Every Moment
+            Curated <span className="mono-text">Excellence</span> <br />
+            For Modern Living
           </h1>
           <p className={styles.subtitle}>
-            Discover our curated collection of luxury floral arrangements and artisanal gifts, 
-            handcrafted to elevate your most precious celebrations.
+            Discover our collection of high-end essentials and artisanal designs, 
+            carefully selected to elevate your everyday environment.
           </p>
           <div className={styles.ctaGroup}>
             <button className={styles.primaryBtn + " glow-hover"}>
-              EXPLORE COLLECTIONS
+              EXPLORE DESIGNS
             </button>
             <button className={styles.secondaryBtn}>
-              OUR STORY
+              LEARN MORE
             </button>
           </div>
         </div>
@@ -52,7 +52,7 @@ export default function Home() {
             <div className={styles.glowOrb}></div>
             <img 
               src="/luxury_floral_hero.png" 
-              alt="Luxury Floral Arrangement" 
+              alt="Luxury Minimalist Design" 
               className={styles.heroImage}
             />
           </div>
@@ -114,13 +114,13 @@ export default function Home() {
             <div key={i} className={styles.testimonialCard + " glass"}>
               <Quote className={styles.quoteIcon} />
               <p className={styles.testimonialText}>
-                "Absolutely stunning quality. The attention to detail in the arrangements is unlike anything I've seen. Truly elevates the entire room's energy."
+                "The design philosophy is evident in every detail. It's rare to find a brand that balances form and function so perfectly."
               </p>
               <div className={styles.testimonialAuthor}>
                 <div className={styles.stars}>
-                  {[...Array(5)].map((_, idx) => <Star key={idx} size={14} fill="#d4af37" color="#d4af37" />)}
+                  {[...Array(5)].map((_, idx) => <Star key={idx} size={14} fill="currentColor" color="currentColor" />)}
                 </div>
-                <h4>Valued Customer {i}</h4>
+                <h4>Design Partner {i}</h4>
               </div>
             </div>
           ))}
@@ -131,11 +131,11 @@ export default function Home() {
       <footer className={styles.footer}>
         <div className={styles.footerGrid}>
           <div className={styles.footerBrand}>
-            <h2 className="mono-text">FLORA</h2>
-            <p>Defining your space, living well. Luxury floral artistry for the modern home.</p>
+            <h2 className="mono-text">LUXE</h2>
+            <p>Defining your environment, living well. Luxury design for the modern era.</p>
           </div>
           <div className={styles.footerLinks}>
-            <h4>IMPORTANT LINKS</h4>
+            <h4>RESOURCES</h4>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms & Conditions</a>
             <a href="#">FAQ</a>
@@ -144,19 +144,19 @@ export default function Home() {
             <h4>COMPANY</h4>
             <a href="#">Our Story</a>
             <a href="#">Contact Us</a>
-            <a href="#">Boutique Locations</a>
+            <a href="#">Showrooms</a>
           </div>
           <div className={styles.footerSocial}>
-            <h4>PAYMENT METHODS</h4>
+            <h4>SECURE PAYMENT</h4>
             <div className={styles.paymentLogos}>
-              <div className={styles.paymentPlaceholder}>BNI</div>
-              <div className={styles.paymentPlaceholder}>BRI</div>
-              <div className={styles.paymentPlaceholder}>QRIS</div>
+              <div className={styles.paymentPlaceholder}>VISA</div>
+              <div className={styles.paymentPlaceholder}>AMEX</div>
+              <div className={styles.paymentPlaceholder}>STRIPE</div>
             </div>
           </div>
         </div>
         <div className={styles.footerBottom}>
-          <p>&copy; 2026 FLORA E-COMMERCE. POWERED BY PREMIUM ARTISTRY.</p>
+          <p>&copy; 2026 LUXE E-COMMERCE. ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
     </main>
