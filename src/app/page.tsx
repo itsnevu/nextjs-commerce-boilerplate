@@ -4,10 +4,10 @@ import { Shield, Truck, Gift, Globe, Star, Quote } from "lucide-react";
 
 export default function Home() {
   const featuredProducts = [
-    { id: "1", name: "Topper Orthopedic", price: 789000, image: "/luxury_floral_hero.png", slug: "topper-orthopedic", category: "TOPPER" },
-    { id: "2", name: "Orthopedic Foam", price: 1560000, image: "/luxury_floral_hero.png", slug: "orthopedic-foam", category: "BEST SELLER" },
-    { id: "3", name: "Pocket Springbed", price: 1938000, image: "/luxury_floral_hero.png", slug: "pocket-spring", category: "PLUSH TOP" },
-    { id: "4", name: "Natural Latex", price: 4900000, image: "/luxury_floral_hero.png", slug: "natural-latex", category: "PREMIUM" },
+    { id: "1", name: "Designer Lounge Chair", price: 789000, image: "/hero-placeholder.png", slug: "designer-chair", category: "FURNITURE" },
+    { id: "2", name: "Architectural Floor Lamp", price: 1560000, image: "/hero-placeholder.png", slug: "floor-lamp", category: "LIGHTING" },
+    { id: "3", name: "Minimalist Marble Desk", price: 1938000, image: "/hero-placeholder.png", slug: "marble-desk", category: "INTERIOR" },
+    { id: "4", name: "Artisanal Ceramic Vase", price: 4900000, image: "/hero-placeholder.png", slug: "ceramic-vase", category: "DECOR" },
   ];
 
   return (
@@ -51,7 +51,7 @@ export default function Home() {
           <div className={styles.imagePlaceholder + " glass"}>
             <div className={styles.glowOrb}></div>
             <img 
-              src="/luxury_floral_hero.png" 
+              src="/hero-placeholder.png" 
               alt="Luxury Minimalist Design" 
               className={styles.heroImage}
             />

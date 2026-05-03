@@ -93,25 +93,20 @@ button {
   background: var(--accent-secondary);
 }
 
-/* Utilities */
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-}
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+  }
 
-.mono-text {
-  color: var(--accent-primary);
-}
+  .mono-text {
+    color: var(--accent-primary);
+  }
 
-.gold-text {
-  color: var(--accent-primary);
-  background: none;
-  -webkit-text-fill-color: initial;
-}
-
-.glow-hover:hover {
-  background: var(--accent-primary);
-  color: var(--bg-main);
+  .glow-hover:hover {
+    background: var(--accent-primary);
+    color: var(--bg-main);
+  }
 }

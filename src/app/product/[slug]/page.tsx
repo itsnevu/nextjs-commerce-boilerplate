@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     if (!product) return { title: 'Product Not Found' };
 
     return {
-      title: `${product.name} | Flora E-Commerce`,
+      title: `${product.name} | LUXE E-Commerce`,
       description: product.description,
     };
   } catch (error) {
-    return { title: 'Flora E-Commerce' };
+    return { title: 'LUXE E-Commerce' };
   }
 }
 
@@ -44,7 +44,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800">
             <Image
-              src={product.images[0] || '/luxury_floral_hero.png'}
+              src={product.images[0] || '/hero-placeholder.png'}
               alt={product.name}
               fill
               className="object-cover"

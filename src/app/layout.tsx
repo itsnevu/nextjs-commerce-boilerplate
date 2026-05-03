@@ -14,10 +14,10 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Flora E-Commerce | Luxury Floral Artistry",
-    template: "%s | Flora E-Commerce",
+    default: "LUXE E-Commerce | Curated Excellence",
+    template: "%s | LUXE E-Commerce",
   },
-  description: "Exquisite floral arrangements and artisanal gifts handcrafted to elevate your most precious celebrations.",
+  description: "A curated collection of high-end essentials and artisanal designs, carefully selected to elevate your everyday environment.",
 };
 
 export default function RootLayout({
