@@ -5,10 +5,10 @@ import { Shield, Truck, Gift, Globe, Star, Quote, MessageCircle } from "lucide-r
 
 export default function Home() {
   const featuredProducts = [
-    { id: "1", name: "Designer Lounge Chair", price: 4750000, image: "/hero-placeholder.png", slug: "designer-chair", category: "FURNITURE" },
-    { id: "2", name: "Architectural Floor Lamp", price: 2250000, image: "/hero-placeholder.png", slug: "floor-lamp", category: "LIGHTING" },
-    { id: "3", name: "Minimalist Marble Desk", price: 8900000, image: "/hero-placeholder.png", slug: "marble-desk", category: "INTERIOR" },
-    { id: "4", name: "Artisanal Ceramic Vase", price: 1250000, image: "/hero-placeholder.png", slug: "ceramic-vase", category: "DECOR" },
+    { id: "1", name: "Designer Lounge Chair", price: 4750000, image: "/chair.png", slug: "designer-chair", category: "FURNITURE" },
+    { id: "2", name: "Architectural Floor Lamp", price: 2250000, image: "/lamp.png", slug: "floor-lamp", category: "LIGHTING" },
+    { id: "3", name: "Minimalist Marble Desk", price: 8900000, image: "/desk.png", slug: "marble-desk", category: "INTERIOR" },
+    { id: "4", name: "Artisanal Ceramic Vase", price: 1250000, image: "/vase.png", slug: "ceramic-vase", category: "DECOR" },
   ];
 
   return (
@@ -25,12 +25,12 @@ export default function Home() {
             carefully selected to elevate your everyday environment.
           </p>
           <div className={styles.ctaGroup}>
-            <button className={styles.primaryBtn + " glow-hover"}>
+            <a href="/shop" className={styles.primaryBtn + " glow-hover"}>
               EXPLORE DESIGNS
-            </button>
-            <button className={styles.secondaryBtn}>
+            </a>
+            <a href="/story" className={styles.secondaryBtn}>
               LEARN MORE
-            </button>
+            </a>
           </div>
         </div>
 
@@ -38,7 +38,7 @@ export default function Home() {
           <div className={styles.imagePlaceholder + " glass"}>
             <div className={styles.glowOrb}></div>
             <Image 
-              src="/hero-placeholder.png" 
+              src="/hero.png" 
               alt="Luxury Interior Design" 
               fill 
               className={styles.heroImage}

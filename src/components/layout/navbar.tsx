@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ShoppingBag, Diamond, Search, X } from 'lucide-react';
 import { useCartStore } from '@/lib/store/use-cart-store';
+import { siteConfig } from '@/config/site';
 import styles from '@/app/page.module.css';
 import CartDrawer from '@/components/modules/cart/cart-drawer';
 
@@ -21,37 +22,29 @@ export default function Navbar() {
       <nav className={styles.navbar + " glass"}>
         <a href="/" className={styles.logo}>
           <Diamond className={styles.logoIcon} size={24} strokeWidth={1.5} />
-          <span className="mono-text">LUXE</span>
+          <span className="mono-text">{siteConfig.name}</span>
         </a>
         
         <div className={styles.navLinks}>
           <div className={styles.navItem}>
             <a href="/shop" className={styles.navLink}>SHOP</a>
             <div className={styles.megaMenu}>
-              <div className={styles.megaMenuColumn}>
-                <h4>FURNITURE</h4>
-                <div className={styles.megaMenuList}>
-                  <a href="#" className={styles.megaMenuLink}>Living Room</a>
-                  <a href="#" className={styles.megaMenuLink}>Bedroom</a>
-                  <a href="#" className={styles.megaMenuLink}>Office</a>
+              {siteConfig.categories.map((cat) => (
+                <div key={cat.id} className={styles.megaMenuColumn}>
+                  <h4>{cat.name}</h4>
+                  <div className={styles.megaMenuList}>
+                    {cat.subcategories.map((sub) => (
+                      <a 
+                        key={sub} 
+                        href={`/shop?category=${cat.name}`} 
+                        className={styles.megaMenuLink}
+                      >
+                        {sub}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className={styles.megaMenuColumn}>
-                <h4>LIGHTING</h4>
-                <div className={styles.megaMenuList}>
-                  <a href="#" className={styles.megaMenuLink}>Floor Lamps</a>
-                  <a href="#" className={styles.megaMenuLink}>Pendants</a>
-                  <a href="#" className={styles.megaMenuLink}>Wall Lights</a>
-                </div>
-              </div>
-              <div className={styles.megaMenuColumn}>
-                <h4>DECOR</h4>
-                <div className={styles.megaMenuList}>
-                  <a href="#" className={styles.megaMenuLink}>Ceramics</a>
-                  <a href="#" className={styles.megaMenuLink}>Wall Art</a>
-                  <a href="#" className={styles.megaMenuLink}>Textiles</a>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
           <div className={styles.navItem}>

@@ -7,12 +7,12 @@ export default function DesignPage() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <Image 
-          src="/design_philosophy_hero_1777833493158.png"
+          src="/hero.png"
           alt="Architectural Design Philosophy"
           fill
           style={{ objectFit: 'cover' }}
           priority
-          sizes="95vw"
+          sizes="100vw"
         />
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>DESIGN PHILOSOPHY</h1>

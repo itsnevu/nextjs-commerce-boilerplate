@@ -7,12 +7,12 @@ export default function StoryPage() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <Image 
-          src="/artisanal_craft_hero_1777833416757.png"
+          src="/hero.png"
           alt="Artisanal Craftsmanship"
           fill
           className={styles.heroBg}
           priority
-          sizes="90vw"
+          sizes="100vw"
         />
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>OUR STORY</h1>
@@ -34,7 +34,7 @@ export default function StoryPage() {
         </div>
         <div className={styles.imageContainer}>
           <Image 
-            src="/hero-placeholder.png"
+            src="/hero.png"
             alt="Design Studio"
             fill
             style={{ objectFit: 'cover' }}
@@ -64,7 +64,7 @@ export default function StoryPage() {
         </div>
         <div className={styles.imageContainer}>
           <Image 
-            src="/hero-placeholder.png"
+            src="/hero.png"
             alt="Sustainable Materials"
             fill
             style={{ objectFit: 'cover' }}

@@ -1,0 +1,126 @@
+.main {
+  min-height: 100vh;
+  padding: 160px 10% 8rem;
+  background: var(--bg-main);
+}
+
+.header {
+  margin-bottom: 6rem;
+  max-width: 800px;
+}
+
+.header h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: -0.03em;
+}
+
+.header p {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
+  align-items: start;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inputGroup label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+}
+
+.inputGroup input, .inputGroup textarea {
+  padding: 1.25rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-subtle);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: var(--transition-smooth);
+}
+
+.inputGroup input:focus, .inputGroup textarea:focus {
+  border-color: var(--accent-primary);
+  outline: none;
+  background: var(--bg-main);
+}
+
+.submitBtn {
+  padding: 1.5rem;
+  background: var(--text-primary);
+  color: var(--bg-main);
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: var(--transition-smooth);
+  margin-top: 1rem;
+}
+
+.submitBtn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.infoBlock h3 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent-primary);
+  margin-bottom: 1.5rem;
+}
+
+.infoBlock p, .infoBlock a {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.infoBlock a:hover {
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
+
+.socialGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 6rem;
+  }
+  
+  .header h1 {
+    font-size: 3rem;
+  }
+}

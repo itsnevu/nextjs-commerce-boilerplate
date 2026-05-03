@@ -1,5 +1,4 @@
-'use client';
-
+import { siteConfig } from '@/config/site';
 import { Diamond, Camera, X, Play } from 'lucide-react';
 import styles from '@/app/page.module.css';
 
@@ -10,32 +9,33 @@ export default function Footer() {
         <div className={styles.footerBrand}>
           <div className={styles.logo}>
             <Diamond className={styles.logoIcon} size={24} strokeWidth={1.5} />
-            <span className="mono-text">LUXE</span>
+            <span className="mono-text">{siteConfig.name}</span>
           </div>
           <p className={styles.brandTagline}>
-            Elevating everyday environments through curated excellence and artisanal design.
+            {siteConfig.brand.tagline}
           </p>
           <div className={styles.socialIcons}>
-            <a href="#" aria-label="Instagram"><Camera size={20} /></a>
-            <a href="#" aria-label="Twitter"><X size={20} /></a>
-            <a href="#" aria-label="Youtube"><Play size={20} /></a>
+            <a href={siteConfig.contact.socials.instagram} target="_blank" aria-label="Instagram"><Camera size={20} /></a>
+            <a href={siteConfig.contact.socials.twitter} target="_blank" aria-label="Twitter"><X size={20} /></a>
+            <a href={siteConfig.contact.socials.youtube} target="_blank" aria-label="Youtube"><Play size={20} /></a>
           </div>
         </div>
         
         <div className={styles.footerLinks}>
           <h4>SHOP</h4>
-          <a href="/shop?category=FURNITURE">Furniture</a>
-          <a href="/shop?category=LIGHTING">Lighting</a>
-          <a href="/shop?category=DECOR">Decor</a>
+          {siteConfig.categories.map((cat) => (
+            <a key={cat.id} href={`/shop?category=${cat.name}`}>{cat.name}</a>
+          ))}
           <a href="/shop">New Arrivals</a>
         </div>
         
         <div className={styles.footerLinks}>
           <h4>ASSISTANCE</h4>
-          <a href="#">Shipping Policy</a>
-          <a href="#">Returns & Exchanges</a>
-          <a href="https://wa.me/6281234567890?text=Halo%20LUXE,%20saya%20ingin%20bertanya%20mengenai..." target="_blank">Contact via WhatsApp</a>
-          <a href="#">FAQ</a>
+          <a href="/support#shipping">Shipping Policy</a>
+          <a href="/support#returns">Returns & Exchanges</a>
+          <a href="/contact">Contact Studio</a>
+          <a href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Halo%20${siteConfig.name},%20saya%20ingin%20bertanya%20mengenai...`} target="_blank">WhatsApp Inquiry</a>
+          <a href="/support#faq">FAQ</a>
         </div>
         
         <div className={styles.footerNewsletter}>
@@ -49,10 +49,10 @@ export default function Footer() {
       </div>
       
       <div className={styles.footerBottom}>
-        <p>&copy; {new Date().getFullYear()} LUXE E-COMMERCE. ALL RIGHTS RESERVED.</p>
+        <p>&copy; {new Date().getFullYear()} {siteConfig.name} E-COMMERCE. ALL RIGHTS RESERVED.</p>
         <div className={styles.footerLegal}>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <a href="/support#privacy">Privacy Policy</a>
+          <a href="/support#terms">Terms of Service</a>
         </div>
       </div>
     </footer>

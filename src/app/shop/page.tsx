@@ -2,8 +2,10 @@ import styles from './shop.module.css';
 import ProductCard from '@/components/modules/product/product-card';
 import Navbar from '@/components/layout/navbar';
 import db from '@/lib/db';
-import { Filter, SlidersHorizontal, X } from 'lucide-react';
+import { Filter, X } from 'lucide-react';
 import Link from 'next/link';
+import ShopFilters from '@/components/modules/shop/shop-filters';
+import { siteConfig } from '@/config/site';
 
 async function getProducts(search?: string, category?: string) {
   if (!process.env.DATABASE_URL) return [];
@@ -27,7 +29,7 @@ async function getProducts(search?: string, category?: string) {
     });
     return products;
   } catch (error) {
-    console.error('Failed to fetch products:', error);
+    // Fail silently and return empty array to trigger mock data fallback
     return [];
   }
 }
@@ -42,12 +44,12 @@ async function getCategories() {
 }
 
 const mockProducts = [
-  { id: "1", name: "Designer Lounge Chair", price: 4750000, image: "/hero-placeholder.png", slug: "designer-chair", category: { name: "FURNITURE" } },
-  { id: "2", name: "Architectural Floor Lamp", price: 2250000, image: "/hero-placeholder.png", slug: "floor-lamp", category: { name: "LIGHTING" } },
-  { id: "3", name: "Minimalist Marble Desk", price: 8900000, image: "/hero-placeholder.png", slug: "marble-desk", category: { name: "INTERIOR" } },
-  { id: "4", name: "Artisanal Ceramic Vase", price: 1250000, image: "/hero-placeholder.png", slug: "ceramic-vase", category: { name: "DECOR" } },
-  { id: "5", name: "Premium Velvet Sofa", price: 12500000, image: "/hero-placeholder.png", slug: "velvet-sofa", category: { name: "FURNITURE" } },
-  { id: "6", name: "Geometric Wall Sconce", price: 1750000, image: "/hero-placeholder.png", slug: "wall-sconce", category: { name: "LIGHTING" } },
+  { id: "1", name: "Designer Lounge Chair", price: 4750000, image: "/chair.png", slug: "designer-chair", category: { name: "FURNITURE" } },
+  { id: "2", name: "Architectural Floor Lamp", price: 2250000, image: "/lamp.png", slug: "floor-lamp", category: { name: "LIGHTING" } },
+  { id: "3", name: "Minimalist Marble Desk", price: 8900000, image: "/desk.png", slug: "marble-desk", category: { name: "INTERIOR" } },
+  { id: "4", name: "Artisanal Ceramic Vase", price: 1250000, image: "/vase.png", slug: "ceramic-vase", category: { name: "DECOR" } },
+  { id: "5", name: "Premium Velvet Sofa", price: 12500000, image: "/hero.png", slug: "velvet-sofa", category: { name: "FURNITURE" } },
+  { id: "6", name: "Geometric Wall Sconce", price: 1750000, image: "/lamp.png", slug: "wall-sconce", category: { name: "LIGHTING" } },
 ];
 
 export default async function ShopPage({
@@ -55,7 +57,11 @@ export default async function ShopPage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const { search, category, sort } = await searchParams;
+  const params = await searchParams;
+  const search = params.search;
+  const category = params.category;
+  const sort = params.sort;
+  
   const searchTerm = typeof search === 'string' ? search : undefined;
   const categoryFilter = typeof category === 'string' ? category : 'ALL';
   const sortOrder = typeof sort === 'string' ? sort : 'newest';
@@ -63,7 +69,7 @@ export default async function ShopPage({
   const dbProducts = await getProducts(searchTerm, categoryFilter);
   const dbCategories = await getCategories();
   
-  // Filter mock products if DB is empty
+  // Filter mock products if DB is empty or unreachable
   let products = dbProducts.length > 0 ? dbProducts : mockProducts;
   if (dbProducts.length === 0) {
     if (searchTerm) {
@@ -81,7 +87,10 @@ export default async function ShopPage({
     return 0; // Default (newest)
   });
 
-  const categories = dbCategories.length > 0 ? dbCategories.map((c: { name: string }) => c.name) : ["FURNITURE", "LIGHTING", "INTERIOR", "DECOR"];
+  const categories = dbCategories.length > 0 
+    ? dbCategories.map((c: { name: string }) => c.name) 
+    : siteConfig.categories.map(c => c.name);
+    
   const allCategories = ["ALL", ...categories];
 
   return (
@@ -113,22 +122,7 @@ export default async function ShopPage({
             <div className={styles.resultsCount}>
               Showing {products.length} products
             </div>
-            <div className={styles.sortWrapper}>
-              <SlidersHorizontal size={18} strokeWidth={1.5} />
-              <select 
-                className={styles.sortSelect} 
-                defaultValue={sortOrder}
-                onChange={(e) => {
-                  const url = new URL(window.location.href);
-                  url.searchParams.set('sort', e.target.value);
-                  window.location.href = url.toString();
-                }}
-              >
-                <option value="newest">Newest First</option>
-                <option value="price_low">Price: Low to High</option>
-                <option value="price_high">Price: High to Low</option>
-              </select>
-            </div>
+            <ShopFilters sortOrder={sortOrder} />
           </div>
 
           <div className={styles.layout}>

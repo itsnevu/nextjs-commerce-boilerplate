@@ -1,0 +1,115 @@
+.supportMain {
+  min-height: 100vh;
+  padding: 160px 10% 8rem;
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.header {
+  margin-bottom: 6rem;
+  max-width: 800px;
+}
+
+.header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.header p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.contentWrapper {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 6rem;
+}
+
+.sideNav {
+  position: sticky;
+  top: 140px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sideNavLink {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  transition: var(--transition-smooth);
+}
+
+.sideNavLink:hover {
+  color: var(--accent-primary);
+  transform: translateX(5px);
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+}
+
+.section {
+  scroll-margin-top: 140px;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+}
+
+.faqItem {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border-radius: var(--radius-main);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+}
+
+.faqItem h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.faqItem p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.legalText {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.legalText h3 {
+  color: var(--text-primary);
+  margin: 2rem 0 1rem;
+}
+
+@media (max-width: 1024px) {
+  .contentWrapper {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .sideNav {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+}
