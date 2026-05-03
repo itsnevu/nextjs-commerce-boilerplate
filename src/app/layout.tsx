@@ -19,11 +19,36 @@ import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} E-Commerce | Curated Excellence`,
-    template: `%s | ${siteConfig.name} E-Commerce`,
+    default: `${siteConfig.name} | Curated Excellence`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: ['/og-image.jpg'],
+    creator: '@luxe',
+  },
 };
+
+import FloatingActions from "@/components/layout/floating-actions";
 
 export default function RootLayout({
   children,
@@ -43,6 +68,7 @@ export default function RootLayout({
       <body className="antialiased">
         <Navbar />
         {children}
+        <FloatingActions />
         <Footer />
         <Toast />
       </body>

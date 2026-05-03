@@ -59,8 +59,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <main className={styles.main}>
-      <Navbar />
-      
       <div className="container mx-auto px-4 py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Gallery Placeholder */}
@@ -94,17 +92,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </span>
             </div>
 
-            {/* Sakti Urgency Engine */}
+            {/* Sakti Urgency Engine (Stable Seed for SSR) */}
             <div className="flex flex-wrap gap-3 mb-6">
               <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-50 dark:bg-amber-900/10 text-amber-600 dark:text-amber-400 rounded-full text-[9px] font-bold tracking-widest uppercase border border-amber-100 dark:border-amber-900/20">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
                 </span>
-                {Math.floor(Math.random() * 12) + 5} People looking at this now
+                {(product.id.charCodeAt(0) % 10) + 7} People looking at this now
               </div>
               <div className="px-3 py-1.5 bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400 rounded-full text-[9px] font-bold tracking-widest uppercase border border-red-100 dark:border-red-900/20">
-                Low Stock: Only {Math.floor(Math.random() * 4) + 1} Left
+                Low Stock: Only {(product.id.charCodeAt(0) % 4) + 2} Left
               </div>
             </div>
             

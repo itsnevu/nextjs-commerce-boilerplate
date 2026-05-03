@@ -1,13 +1,17 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import ProductCard from "@/components/modules/product/product-card";
-import { Shield, Truck, Gift, Globe, Star, Quote, MessageCircle } from "lucide-react";
+import { Shield, Truck, Sparkles, Headset, Star, Quote, MessageCircle } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 import { mockProducts } from "@/lib/mocks";
 
 export default function Home() {
   const featuredProducts = mockProducts.slice(0, 4);
+  const { hero, features, testimonials } = siteConfig.content;
+
+  // Map icons to features
+  const featureIcons = [Truck, Shield, Sparkles, Headset];
 
   return (
     <main className={styles.main}>
@@ -15,18 +19,22 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1 className={styles.title}>
-            Curated <span className="mono-text">Excellence</span> <br />
-            For Modern Living
+            {hero.title.split(' ').map((word, i) => (
+              <span key={i}>
+                {i === 1 ? <span className="mono-text">{word}</span> : word}{' '}
+                {i === 1 && <br />}
+              </span>
+            ))}
           </h1>
           <p className={styles.subtitle}>
-            {siteConfig.brand.tagline}
+            {hero.subtitle}
           </p>
           <div className={styles.ctaGroup}>
             <a href="/shop" className={styles.primaryBtn + " glow-hover"}>
-              EXPLORE DESIGNS
+              {hero.primaryCta}
             </a>
             <a href="/story" className={styles.secondaryBtn}>
-              LEARN MORE
+              {hero.secondaryCta}
             </a>
           </div>
         </div>
@@ -36,7 +44,7 @@ export default function Home() {
             <div className={styles.glowOrb}></div>
             <Image 
               src="/hero.png" 
-              alt="Luxury Interior Design" 
+              alt="Luxury Collection" 
               fill 
               className={styles.heroImage}
               priority
@@ -48,34 +56,18 @@ export default function Home() {
 
       {/* Features Bar */}
       <section className={styles.featuresBar + " glass"}>
-        <div className={styles.featureItem}>
-          <Shield className={styles.featureIcon} strokeWidth={1.5} />
-          <div>
-            <h3>Lifetime Warranty</h3>
-            <p>Quality guaranteed.</p>
-          </div>
-        </div>
-        <div className={styles.featureItem}>
-          <Truck className={styles.featureIcon} strokeWidth={1.5} />
-          <div>
-            <h3>Global Shipping</h3>
-            <p>Doorstep delivery.</p>
-          </div>
-        </div>
-        <div className={styles.featureItem}>
-          <Gift className={styles.featureIcon} strokeWidth={1.5} />
-          <div>
-            <h3>Premium Rewards</h3>
-            <p>Exclusive member benefits.</p>
-          </div>
-        </div>
-        <div className={styles.featureItem}>
-          <Globe className={styles.featureIcon} strokeWidth={1.5} />
-          <div>
-            <h3>Sustainable</h3>
-            <p>Ethically sourced.</p>
-          </div>
-        </div>
+        {features.map((feature, i) => {
+          const Icon = featureIcons[i % featureIcons.length];
+          return (
+            <div key={i} className={styles.featureItem}>
+              <Icon className={styles.featureIcon} strokeWidth={1.5} />
+              <div>
+                <h3>{feature.title}</h3>
+                <p>{feature.desc}</p>
+              </div>
+            </div>
+          );
+        })}
       </section>
 
       {/* Product Section */}
@@ -97,14 +89,7 @@ export default function Home() {
           <h2 className={styles.sectionTitle}>Client <span className="mono-text">Voices</span></h2>
         </div>
         <div className={styles.testimonialGrid}>
-          {[
-            { name: "Arif Budiman", text: "Kualitas produknya luar biasa. Detail pengerjaannya sangat rapi dan memberikan kesan mewah pada ruangan saya." },
-            { name: "Siti Sarah", text: "Desain yang sangat minimalis namun tetap fungsional. Sangat cocok dengan konsep rumah modern saya." },
-            { name: "Kevin Sanjaya", text: "Pelayanan sangat profesional dan pengiriman tepat waktu. Sangat merekomendasikan LUXE untuk interior rumah." },
-            { name: "Dewi Lestari", text: "Benar-benar mengubah suasana rumah menjadi lebih berkelas. Setiap tamu yang datang selalu memuji furniture-nya." },
-            { name: "Budi Santoso", text: "Material yang digunakan terasa sangat premium. Ini adalah investasi terbaik untuk dekorasi rumah saya." },
-            { name: "Maya Putri", text: "Suka sekali dengan konsep megamenu-nya, memudahkan saya mencari kategori yang saya butuhkan. Produknya pun eksklusif." },
-          ].map((t, i) => (
+          {testimonials.map((t, i) => (
             <div key={i} className={styles.testimonialCard + " glass"}>
               <Quote className={styles.quoteIcon} />
               <p className={styles.testimonialText}>"{t.text}"</p>
@@ -126,10 +111,10 @@ export default function Home() {
             <h2><span className="mono-text">{siteConfig.name}</span> DESIGN</h2>
           </div>
           <div className={styles.contactAction}>
-            <p>Hubungi Kami</p>
+            <p>Connect with our Studio</p>
             <a href={`https://wa.me/${siteConfig.contact.whatsapp}`} className={styles.whatsappBtn}>
               <MessageCircle size={18} />
-              Whatsapp
+              WHATSAPP
             </a>
           </div>
         </div>

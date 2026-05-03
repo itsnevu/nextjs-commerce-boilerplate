@@ -9,38 +9,11 @@ import { siteConfig } from '@/config/site';
 import { mockProducts } from '@/lib/mocks';
 
 async function getProducts(search?: string, category?: string) {
-  if (!process.env.DATABASE_URL) return [];
-  
-  try {
-    const where: any = {};
-    if (search) {
-      where.OR = [
-        { name: { contains: search, mode: 'insensitive' } },
-        { description: { contains: search, mode: 'insensitive' } },
-      ];
-    }
-    if (category && category !== 'ALL') {
-      where.category = { name: category };
-    }
-
-    const products = await db.product.findMany({
-      where,
-      include: { category: true },
-      orderBy: { createdAt: 'desc' },
-    });
-    return products;
-  } catch (error) {
-    return [];
-  }
+  return []; // Placeholder for now since we use central mocks
 }
 
 async function getCategories() {
-  if (!process.env.DATABASE_URL) return [];
-  try {
-    return await db.category.findMany();
-  } catch (error) {
-    return [];
-  }
+  return []; // Placeholder for now
 }
 
 export default async function ShopPage({
@@ -86,8 +59,6 @@ export default async function ShopPage({
 
   return (
     <main className={styles.main}>
-      <Navbar />
-      
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <h1 className={styles.title}>The <span className="mono-text">Collection</span></h1>

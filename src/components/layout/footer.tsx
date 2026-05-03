@@ -1,5 +1,5 @@
 import { siteConfig } from '@/config/site';
-import { Diamond, Camera, X, Play } from 'lucide-react';
+import { Diamond } from 'lucide-react';
 import styles from '@/app/page.module.css';
 
 export default function Footer() {
@@ -15,9 +15,26 @@ export default function Footer() {
             {siteConfig.brand.tagline}
           </p>
           <div className={styles.socialIcons}>
-            <a href={siteConfig.contact.socials.instagram} target="_blank" aria-label="Instagram"><Camera size={20} /></a>
-            <a href={siteConfig.contact.socials.twitter} target="_blank" aria-label="Twitter"><X size={20} /></a>
-            <a href={siteConfig.contact.socials.youtube} target="_blank" aria-label="Youtube"><Play size={20} /></a>
+            {/* Instagram */}
+            <a href={siteConfig.contact.socials.instagram} target="_blank" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            {/* X (Twitter) */}
+            <a href={siteConfig.contact.socials.twitter} target="_blank" aria-label="X">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            {/* TikTok */}
+            <a href={siteConfig.contact.socials.tiktok} target="_blank" aria-label="TikTok">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.6-4.12-1.31a8.776 8.776 0 0 1-1.81-1.35v6.53c-.07 1.71-.39 3.49-1.3 4.98-.95 1.51-2.45 2.65-4.13 3.12-1.74.52-3.67.44-5.32-.23-1.64-.64-3-1.89-3.79-3.48a8.7 8.7 0 0 1-1.01-4.16c0-1.21.22-2.43.66-3.56.7-1.84 2.1-3.41 3.89-4.19 1.54-.68 3.32-.83 4.96-.45V8.15c-1.13-.3-2.35-.29-3.45.1-.96.34-1.82 1-2.43 1.83-.62.83-.96 1.85-1.02 2.9-.05 1.14.23 2.3.83 3.27.56.96 1.48 1.72 2.53 2.08 1.05.37 2.24.38 3.3.01a4.83 4.83 0 0 0 2.82-2.58c.36-.81.52-1.7.53-2.59V.02z" />
+              </svg>
+            </a>
           </div>
         </div>
         
@@ -39,11 +56,11 @@ export default function Footer() {
         </div>
         
         <div className={styles.footerNewsletter}>
-          <h4>JOIN THE CLUB</h4>
-          <p>Subscribe to receive updates on new collections and exclusive events.</p>
+          <h4>{siteConfig.content.newsletter.title}</h4>
+          <p>{siteConfig.content.newsletter.subtitle}</p>
           <div className={styles.newsletterInput}>
             <input type="email" placeholder="email@example.com" />
-            <button>JOIN</button>
+            <button>{siteConfig.content.newsletter.button}</button>
           </div>
         </div>
       </div>

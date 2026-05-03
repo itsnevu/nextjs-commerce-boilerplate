@@ -15,7 +15,7 @@ interface ProductCardProps {
     price: number;
     image: string;
     slug: string;
-    category?: string;
+    category?: string | { name: string };
   };
 }
 
@@ -50,7 +50,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       price: product.price,
       image: product.image,
       slug: product.slug,
-      category: product.category
+      category: typeof product.category === 'object' ? product.category.name : product.category
     });
   };
 
@@ -85,7 +85,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="p-4">
         {product.category && (
           <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold">
-            {product.category}
+            {typeof product.category === 'object' ? product.category.name : product.category}
           </span>
         )}
         <Link href={`/product/${product.slug}`}>

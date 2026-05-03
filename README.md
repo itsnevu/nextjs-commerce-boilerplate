@@ -1,76 +1,54 @@
-# Next.js E-Commerce Template
+# 💎 LUXE E-Commerce Template (Sakti Edition)
 
-A production-ready, modular, and scalable e-commerce boilerplate built with the latest technologies.
+Welcome to **LUXE**, a professional-grade, high-performance Next.js e-commerce template designed for premium brands. This template is engineered to give developers a "Sakti" (powerful) head start in building luxury online stores.
 
-## 🚀 Tech Stack
+## 🚀 Key Features
 
-- **Framework**: Next.js 14+ (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS & Shadcn UI
-- **Database**: Prisma ORM with PostgreSQL
-- **State Management**: Zustand
-- **Auth**: NextAuth.js
-- **Validation**: Zod
-- **Icons**: Lucide React
+- **Centralized Configuration**: Rebrand the entire store in seconds via `src/config/site.ts`.
+- **Dynamic Inventory**: Single source of truth for products in `src/lib/mocks.ts`.
+- **Conversion Engines**: Built-in Wishlist, Urgency Engine (Scarcity indicators), and Free Shipping Progress Bar.
+- **Payment Ready**: Integrated with a `PaymentService` bridge (compatible with Midtrans/Stripe).
+- **Responsive Design**: Fully optimized for Desktop, Tablet, and Mobile with a custom Hamburger menu.
+- **Premium Aesthetics**: Glassmorphism UI, smooth animations, and curated typography.
+- **Floating Actions**: Built-in Scroll-to-Top and WhatsApp contact triggers.
 
-## 📂 Project Structure
+## 🛠️ Setup Instructions
 
-```text
-src/
-├── app/               # Next.js App Router (pages, layouts, api)
-├── components/
-│   ├── modules/       # Feature-specific components (product, cart, etc.)
-│   └── ui/            # Reusable UI components (Shadcn)
-├── lib/
-│   ├── api/           # API client and service functions
-│   ├── auth/          # NextAuth configuration
-│   └── store/         # Zustand state stores
-├── prisma/            # Database schema and migrations
-└── public/            # Static assets
-```
+1. **Clone & Install**:
+   ```bash
+   npm install
+   # or
+   bun install
+   ```
 
-## 🛠️ Getting Started
+2. **Configure Your Brand**:
+   Open `src/config/site.ts` and update your brand name, colors, and social links.
 
-### 1. Clone the repository
-```bash
-git clone <your-repo-url>
-cd fe-ecommerce
-```
+3. **Add Products**:
+   Edit `src/lib/mocks.ts` to define your initial product catalog.
 
-### 2. Install dependencies
-```bash
-npm install
-```
+4. **Environment Variables**:
+   Copy `.env.example` to `.env.local` and add your payment gateway credentials.
 
-### 3. Environment Variables
-Create a `.env` file in the root directory and add the following:
-```env
-DATABASE_URL="postgresql://user:password@localhost:5432/ecommerce"
-NEXTAUTH_SECRET="your-secret"
-NEXTAUTH_URL="http://localhost:3000"
-GOOGLE_CLIENT_ID=""
-GOOGLE_CLIENT_SECRET=""
-```
+## 🎨 Customization
 
-### 4. Database Setup
-```bash
-npx prisma db push
-```
+### Changing the Theme
+The entire design system is controlled by CSS variables in `src/app/layout.tsx` which are derived from `siteConfig.theme`.
+- **Accent Color**: Change `siteConfig.theme.accent` to update all gold elements instantly.
+- **Border Radius**: Adjust `siteConfig.theme.radius` for a sharper or more rounded look.
 
-### 5. Run development server
-```bash
-npm run dev
-```
+### Adding New Categories
+Simply add a new object to the `categories` array in `siteConfig.ts`. The Navbar, Footer, and Shop Filters will update automatically.
 
-## ✨ Features
+## 📦 Project Structure
 
-- [x] **Product Management**: Dynamic routing, category filtering, and search.
-- [x] **Shopping Cart**: Persistent cart with Zustand.
-- [ ] **Auth**: Credentials & Google Provider (NextAuth).
-- [ ] **User Dashboard**: Order history and profile.
-- [ ] **Admin Panel**: Product CRUD and basic analytics.
-- [ ] **Payments**: Midtrans/Stripe integration placeholder.
+- `/src/app`: Next.js App Router pages and layouts.
+- `/src/components`: Modular UI components (Layout, Product, Cart, etc.).
+- `/src/lib`: Logic, stores (Zustand), and services.
+- `/src/config`: Global site configuration.
 
-## 📄 License
+## 🤝 Contribution & Support
+This template is built with developers in mind. For support or custom feature requests, contact through the WhatsApp floating button integrated into the demo.
 
-MIT
+---
+*Built with ❤️ for High-Performance E-Commerce.*

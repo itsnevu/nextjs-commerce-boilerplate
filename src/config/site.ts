@@ -58,8 +58,38 @@ export const siteConfig = {
     socials: {
       instagram: "https://instagram.com/luxe.design",
       twitter: "https://twitter.com/luxe.design",
+      tiktok: "https://tiktok.com/@luxe.design",
       youtube: "https://youtube.com/luxe.design"
     }
+  },
+
+  // UI Content (Universal & Sakti!)
+  content: {
+    hero: {
+      title: "The Art of Modern Living",
+      subtitle: "Discover our curated collection of architectural pieces designed to transform your space into a gallery of excellence.",
+      primaryCta: "EXPLORE COLLECTION",
+      secondaryCta: "OUR STORY"
+    },
+    newsletter: {
+      title: "JOIN THE CLUB",
+      subtitle: "Subscribe to receive updates on new collections and exclusive events.",
+      button: "JOIN"
+    },
+    features: [
+      { title: "Global Shipping", desc: "Premium delivery worldwide" },
+      { title: "Secure Payment", desc: "100% encrypted checkout" },
+      { title: "Artisanal Quality", desc: "Hand-picked curation" },
+      { title: "24/7 Support", desc: "Dedicated concierge service" }
+    ],
+    testimonials: [
+      { name: "Arif Budiman", text: "Kualitas produknya luar biasa. Detail pengerjaannya sangat rapi dan memberikan kesan mewah pada ruangan saya." },
+      { name: "Siti Sarah", text: "Desain yang sangat minimalis namun tetap fungsional. Sangat cocok dengan konsep rumah modern saya." },
+      { name: "Kevin Sanjaya", text: "Pelayanan sangat profesional dan pengiriman tepat waktu. Sangat merekomendasikan LUXE untuk interior rumah." },
+      { name: "Dewi Lestari", text: "Benar-benar mengubah suasana rumah menjadi lebih berkelas. Setiap tamu yang datang selalu memuji furniture-nya." },
+      { name: "Budi Santoso", text: "Material yang digunakan terasa sangat premium. Ini adalah investasi terbaik untuk dekorasi rumah saya." },
+      { name: "Maya Putri", text: "Suka sekali dengan konsep megamenu-nya, memudahkan saya mencari kategori yang saya butuhkan. Produknya pun eksklusif." },
+    ]
   },
 
   // Payment Settings

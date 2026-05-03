@@ -1,17 +1,19 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ShoppingBag, Diamond, Search, X, Heart } from 'lucide-react';
+import { ShoppingBag, Diamond, Search, X, Heart, Menu } from 'lucide-react';
 import { useCartStore } from '@/lib/store/use-cart-store';
 import { useWishlistStore } from '@/lib/store/use-wishlist-store';
 import { siteConfig } from '@/config/site';
 import styles from '@/app/page.module.css';
 import CartDrawer from '@/components/modules/cart/cart-drawer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { getItemCount } = useCartStore();
   const { items: wishlistItems } = useWishlistStore();
@@ -23,27 +25,45 @@ export default function Navbar() {
   return (
     <>
       <nav className={styles.navbar + " glass"}>
-        <a href="/" className={styles.logo}>
-          <Diamond className={styles.logoIcon} size={24} strokeWidth={1.5} />
-          <span className="mono-text">{siteConfig.name}</span>
-        </a>
+        <Link href="/" className={styles.logo}>
+          {siteConfig.brand.logo && siteConfig.brand.logo !== '/logo.svg' ? (
+            <div style={{ position: 'relative', width: '120px', height: '40px' }}>
+              <Image 
+                src={siteConfig.brand.logo} 
+                alt={siteConfig.name} 
+                fill 
+                style={{ objectFit: 'contain', objectPosition: 'left' }}
+              />
+            </div>
+          ) : (
+            <>
+              <Diamond className={styles.logoIcon} size={24} strokeWidth={1.5} />
+              <span className="mono-text">{siteConfig.name}</span>
+            </>
+          )}
+        </Link>
         
-        <div className={styles.navLinks}>
+        <div className={`${styles.navLinks} ${isMenuOpen ? styles.navActive : ''}`}>
+          <button className={styles.closeMenu} onClick={() => setIsMenuOpen(false)}>
+            <X size={24} />
+          </button>
+          
           <div className={styles.navItem}>
-            <a href="/shop" className={styles.navLink}>SHOP</a>
+            <Link href="/shop" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>SHOP</Link>
             <div className={styles.megaMenu}>
               {siteConfig.categories.map((cat) => (
                 <div key={cat.id} className={styles.megaMenuColumn}>
                   <h4>{cat.name}</h4>
                   <div className={styles.megaMenuList}>
                     {cat.subcategories.map((sub) => (
-                      <a 
+                      <Link 
                         key={sub} 
                         href={`/shop?category=${cat.name}`} 
                         className={styles.megaMenuLink}
+                        onClick={() => setIsMenuOpen(false)}
                       >
                         {sub}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -51,46 +71,50 @@ export default function Navbar() {
             </div>
           </div>
           <div className={styles.navItem}>
-            <a href="/design" className={styles.navLink}>DESIGN</a>
+            <Link href="/design" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>DESIGN</Link>
           </div>
           <div className={styles.navItem}>
-            <a href="/story" className={styles.navLink}>STORY</a>
+            <Link href="/story" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>STORY</Link>
           </div>
+        </div>
 
-          <div className={styles.navActions}>
-            <div className={`${styles.searchWrapper} ${isSearchOpen ? styles.searchActive : ''}`}>
-              <input 
-                type="text" 
-                placeholder="Search products..." 
-                className={styles.searchInput} 
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    window.location.href = `/shop?search=${(e.target as HTMLInputElement).value}`;
-                  }
-                }}
-              />
-              <button onClick={() => setIsSearchOpen(!isSearchOpen)} className={styles.iconBtn}>
-                {isSearchOpen ? <X size={18} /> : <Search size={18} strokeWidth={1.5} />}
-              </button>
-            </div>
+        <div className={styles.navActions}>
+          <button className={styles.menuBtn} onClick={() => setIsMenuOpen(true)}>
+            <Menu size={20} strokeWidth={1.5} />
+          </button>
 
-            <Link 
-              href="/wishlist"
-              className={styles.cartBtn}
-              style={{ marginRight: '0.5rem' }}
-            >
-              <Heart size={18} strokeWidth={1.5} />
-              {mounted && wishlistItems.length > 0 && <span className={styles.cartCount}>{wishlistItems.length}</span>}
-            </Link>
-
-            <button 
-              className={styles.cartBtn}
-              onClick={() => setIsCartOpen(true)}
-            >
-              <ShoppingBag size={18} strokeWidth={1.5} />
-              {mounted && <span className={styles.cartCount}>{getItemCount()}</span>}
+          <div className={`${styles.searchWrapper} ${isSearchOpen ? styles.searchActive : ''}`}>
+            <input 
+              type="text" 
+              placeholder="Search products..." 
+              className={styles.searchInput} 
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  window.location.href = `/shop?search=${(e.target as HTMLInputElement).value}`;
+                }
+              }}
+            />
+            <button onClick={() => setIsSearchOpen(!isSearchOpen)} className={styles.iconBtn}>
+              {isSearchOpen ? <X size={18} /> : <Search size={18} strokeWidth={1.5} />}
             </button>
           </div>
+
+          <Link 
+            href="/wishlist"
+            className={styles.cartBtn}
+            style={{ marginRight: '0.5rem' }}
+          >
+            <Heart size={18} strokeWidth={1.5} />
+            {mounted && wishlistItems.length > 0 && <span className={styles.cartCount}>{wishlistItems.length}</span>}
+          </Link>
+
+          <button 
+            className={styles.cartBtn}
+            onClick={() => setIsCartOpen(true)}
+          >
+            <ShoppingBag size={18} strokeWidth={1.5} />
+            {mounted && <span className={styles.cartCount}>{getItemCount()}</span>}
+          </button>
         </div>
       </nav>
 

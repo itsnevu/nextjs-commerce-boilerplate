@@ -18,8 +18,6 @@ export default function ContactPage() {
 
   return (
     <main className={styles.main}>
-      <Navbar />
-      
       <header className={styles.header}>
         <h1>Get in <span className="mono-text">Touch</span></h1>
         <p>{siteConfig.brand.tagline} Tim kami siap membantu Anda dengan layanan terbaik.</p>

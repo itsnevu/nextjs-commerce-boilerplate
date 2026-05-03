@@ -6,8 +6,7 @@ import Image from 'next/image';
 import { siteConfig } from '@/config/site';
 import { PaymentService } from '@/lib/payment-service';
 import { useRouter } from 'next/navigation';
-import { MapPin, Truck, CreditCard, Lock, ChevronRight, Loader2 } from 'lucide-react';
-import Navbar from '@/components/layout/navbar';
+import { MapPin, Truck, CreditCard, Lock, Loader2, ShieldCheck, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function CheckoutPage() {
@@ -16,6 +15,17 @@ export default function CheckoutPage() {
   const [mounted, setMounted] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [shipping, setShipping] = useState(150000);
+  
+  // Form State
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    postalCode: ''
+  });
 
   useEffect(() => {
     setMounted(true);
@@ -24,20 +34,24 @@ export default function CheckoutPage() {
     }
   }, [items, router, mounted]);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
 
     try {
-      // Use the Payment Service Bridge
       const response = await PaymentService.createTransaction({
         orderId: 'LX-' + Math.random().toString(36).substr(2, 9).toUpperCase(),
         grossAmount: getTotalPrice() + shipping,
         customerDetails: {
-          firstName: "Guest", // Would come from form in real app
-          lastName: "User",
-          email: "user@example.com",
-          phone: "08123456789"
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone
         },
         items: items.map(i => ({
           id: i.id,
@@ -47,7 +61,6 @@ export default function CheckoutPage() {
         }))
       });
 
-      // Clear cart and redirect
       clearCart();
       router.push('/checkout/success');
     } catch (error) {
@@ -58,14 +71,17 @@ export default function CheckoutPage() {
     }
   };
 
-  if (!mounted || items.length === 0) return null;
+  if (!mounted || items.length === 0) return (
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-zinc-900">
+      <Loader2 className="animate-spin text-zinc-300" size={48} />
+    </div>
+  );
 
   return (
     <main className={styles.main}>
-      <Navbar />
-      
       <div className={styles.header}>
         <h1>Check<span className="mono-text">out</span></h1>
+        <p className="text-zinc-500 mt-2">Complete your order by providing your shipping and payment details.</p>
       </div>
 
       <form className={styles.layout} onSubmit={handlePlaceOrder}>
@@ -76,27 +92,80 @@ export default function CheckoutPage() {
             <div className={styles.inputGrid}>
               <div className={styles.inputGroup}>
                 <label>First Name</label>
-                <input type="text" placeholder="John" required />
+                <input 
+                  type="text" 
+                  name="firstName"
+                  placeholder="John" 
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  required 
+                />
               </div>
               <div className={styles.inputGroup}>
                 <label>Last Name</label>
-                <input type="text" placeholder="Doe" required />
+                <input 
+                  type="text" 
+                  name="lastName"
+                  placeholder="Doe" 
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  required 
+                />
               </div>
               <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
-                <label>Address</label>
-                <input type="text" placeholder="Street name and number" required />
+                <label>Email Address</label>
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="john@example.com" 
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required 
+                />
+              </div>
+              <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
+                <label>Street Address</label>
+                <input 
+                  type="text" 
+                  name="address"
+                  placeholder="Street name and number" 
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  required 
+                />
               </div>
               <div className={styles.inputGroup}>
                 <label>City</label>
-                <input type="text" placeholder="Jakarta" required />
+                <input 
+                  type="text" 
+                  name="city"
+                  placeholder="Jakarta" 
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  required 
+                />
               </div>
               <div className={styles.inputGroup}>
                 <label>Postal Code</label>
-                <input type="text" placeholder="12345" required />
+                <input 
+                  type="text" 
+                  name="postalCode"
+                  placeholder="12345" 
+                  value={formData.postalCode}
+                  onChange={handleInputChange}
+                  required 
+                />
               </div>
               <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
                 <label>Phone Number</label>
-                <input type="tel" placeholder="+62 812 3456 7890" required />
+                <input 
+                  type="tel" 
+                  name="phone"
+                  placeholder="+62 812 3456 7890" 
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required 
+                />
               </div>
             </div>
           </div>
@@ -131,20 +200,20 @@ export default function CheckoutPage() {
           {/* Payment (Mock) */}
           <div className={styles.block}>
             <h2><CreditCard size={24} strokeWidth={1.5} /> PAYMENT</h2>
-            <p className="text-zinc-500 mb-6">All transactions are secure and encrypted.</p>
+            <p className="text-zinc-500 mb-6 text-sm">All transactions are secure and encrypted.</p>
             <div className={styles.option + ' ' + styles.activeOption}>
               <div className={styles.optionInfo}>
-                <h4>Bank Transfer / Virtual Account</h4>
-                <p>BCA, Mandiri, BNI, BRI</p>
+                <h4>Secure Payment Gateway</h4>
+                <p>Debit/Credit Card, Virtual Account, E-Wallet</p>
               </div>
-              <CreditCard size={20} className="text-zinc-400" />
+              <Lock size={20} className="text-zinc-400" />
             </div>
           </div>
         </div>
 
         {/* Sidebar Summary */}
         <aside className={styles.sidebar}>
-          <h3>YOUR ORDER</h3>
+          <h3 className="font-bold tracking-widest text-xs uppercase mb-8 pb-4 border-b border-zinc-200 dark:border-zinc-800">Your Order Summary</h3>
           <div className={styles.miniList}>
             {items.map((item) => (
               <div key={item.id} className={styles.miniItem}>
@@ -152,8 +221,8 @@ export default function CheckoutPage() {
                   <Image src={item.image} alt={item.name} fill className="object-cover" sizes="60px" />
                 </div>
                 <div className={styles.miniInfo}>
-                  <h4>{item.name}</h4>
-                  <p>{item.quantity} × {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(item.price)}</p>
+                  <h4 className="font-medium">{item.name}</h4>
+                  <p className="text-xs text-zinc-500 uppercase tracking-wider">{item.quantity} × {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(item.price)}</p>
                 </div>
               </div>
             ))}
@@ -161,54 +230,36 @@ export default function CheckoutPage() {
 
           <div className={styles.summary}>
             <div className={styles.summaryRow}>
-              <span>Subtotal</span>
-              <span>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(getTotalPrice())}</span>
+              <span className="text-zinc-500">Subtotal</span>
+              <span className="font-medium">{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(getTotalPrice())}</span>
             </div>
             <div className={styles.summaryRow}>
-              <span>Shipping</span>
-              <span>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(shipping)}</span>
+              <span className="text-zinc-500">Shipping</span>
+              <span className="font-medium">{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(shipping)}</span>
             </div>
-            <div className={styles.totalRow}>
-              <span>TOTAL</span>
+            <div className={styles.totalRow + " border-t border-zinc-900 dark:border-white pt-6 mt-6"}>
+              <span className="text-sm font-normal tracking-widest">TOTAL</span>
               <span>{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(getTotalPrice() + shipping)}</span>
             </div>
           </div>
 
           <button type="submit" className={styles.payBtn} disabled={isProcessing}>
             {isProcessing ? (
-              <>
-                PROCESSING... <Loader2 size={18} className="inline ml-2 animate-spin" />
-              </>
+              <div className="flex items-center justify-center gap-2">
+                PROCESSING... <Loader2 size={18} className="animate-spin" />
+              </div>
             ) : (
-              <>
-                PLACE ORDER <Lock size={18} className="inline ml-2" />
-              </>
+              <div className="flex items-center justify-center gap-2 uppercase tracking-widest">
+                COMPLETE PURCHASE <ArrowRight size={18} />
+              </div>
             )}
           </button>
           
-          <div className="flex items-center justify-center gap-2 mt-8 text-[10px] text-zinc-400 uppercase tracking-[0.2em]">
-            <ShieldCheck size={12} /> SSL SECURE PAYMENT
+          <div className="flex items-center justify-center gap-2 mt-8 text-[9px] text-zinc-400 uppercase tracking-[0.3em] font-bold">
+            <ShieldCheck size={14} className="text-zinc-300" /> SSL SECURE PAYMENT GATEWAY
           </div>
         </aside>
       </form>
     </main>
-  );
-}
-
-function ShieldCheck({ size }: { size: number }) {
-  return (
-    <svg 
-      width={size} 
-      height={size} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-    >
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
   );
 }

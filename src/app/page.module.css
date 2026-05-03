@@ -33,6 +33,26 @@
   height: 100%;
 }
 
+.menuBtn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.closeMenu {
+  display: none;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: var(--text-primary);
+}
+
 .navItem {
   height: 100%;
   display: flex;
@@ -478,11 +498,60 @@
   transform: translateY(-3px);
 }
 
-.footerLinks h4, .footerSocial h4 {
+.footerLinks h4, .footerNewsletter h4 {
   font-size: 0.8rem;
   letter-spacing: 0.2em;
   margin-bottom: 2rem;
   color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.footerNewsletter p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 350px;
+}
+
+.newsletterInput {
+  display: flex;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem;
+  max-width: 400px;
+  transition: var(--transition-smooth);
+}
+
+.newsletterInput:focus-within {
+  border-color: var(--accent-primary);
+  background: var(--bg-main);
+}
+
+.newsletterInput input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.newsletterInput button {
+  padding: 0.8rem 2rem;
+  background: var(--text-primary);
+  color: var(--bg-main);
+  border-radius: var(--radius-pill);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: var(--transition-smooth);
+}
+
+.newsletterInput button:hover {
+  transform: scale(1.05);
 }
 
 .footerLinks {
@@ -525,7 +594,45 @@
   color: var(--text-secondary);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
+  .navLinks {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-main);
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 2000;
+  }
+
+  .navActive {
+    right: 0;
+  }
+
+  .menuBtn, .closeMenu {
+    display: flex;
+  }
+
+  .navItem {
+    width: 100%;
+    justify-content: center;
+    height: auto;
+    padding: 1.5rem 0;
+  }
+
+  .navLink {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .megaMenu {
+    display: none; /* Hide mega menu on mobile */
+  }
+
   .footerGrid {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
