@@ -3,20 +3,34 @@
 @tailwind utilities;
 
 :root {
-  --bg-main: #0a0a0b;
-  --bg-card: rgba(20, 20, 22, 0.7);
-  --accent-gold: #d4af37;
-  --accent-gold-glow: rgba(212, 175, 55, 0.3);
-  --text-primary: #f8f8f8;
-  --text-secondary: #a0a0a0;
-  --border-subtle: rgba(212, 175, 55, 0.15);
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.05);
+  --bg-main: #ffffff;
+  --bg-subtle: #f8f8f8;
+  --bg-card: #ffffff;
+  --accent-primary: #000000;
+  --accent-secondary: #666666;
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --border-subtle: #eeeeee;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.05);
   
   --font-heading: var(--font-playfair), serif;
   --font-body: var(--font-outfit), sans-serif;
   
-  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark {
+  --bg-main: #0a0a0a;
+  --bg-subtle: #141414;
+  --bg-card: #141414;
+  --accent-primary: #ffffff;
+  --accent-secondary: #a0a0a0;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --border-subtle: #222222;
+  --glass-bg: rgba(0, 0, 0, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -36,14 +50,14 @@ html, body {
 }
 
 body {
-  background: radial-gradient(circle at 50% -20%, #1a1a1d 0%, #0a0a0b 100%);
+  background: var(--bg-main);
   min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
 a {
@@ -76,7 +90,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-gold);
+  background: var(--accent-secondary);
 }
 
 /* Utilities */
@@ -87,14 +101,17 @@ button {
   border: 1px solid var(--glass-border);
 }
 
+.mono-text {
+  color: var(--accent-primary);
+}
+
 .gold-text {
-  background: linear-gradient(135deg, #fbf5b7 0%, #d4af37 50%, #a67c00 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent-primary);
+  background: none;
+  -webkit-text-fill-color: initial;
 }
 
 .glow-hover:hover {
-  box-shadow: 0 0 20px var(--accent-gold-glow);
-  border-color: var(--accent-gold);
+  background: var(--accent-primary);
+  color: var(--bg-main);
 }

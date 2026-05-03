@@ -14,7 +14,7 @@ export default function Home() {
     <main className={styles.main}>
       <nav className={styles.navbar + " glass"}>
         <div className={styles.logo}>
-          <span className="gold-text">FLORA</span> E-COMMERCE
+          <span className="mono-text">FLORA</span> E-COMMERCE
         </div>
         <div className={styles.navLinks}>
           <a href="#" className={styles.navLink}>COLLECTIONS</a>
@@ -30,7 +30,7 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1 className={styles.title}>
-            Exquisite <span className="gold-text">Artistry</span> <br />
+            Exquisite <span className="mono-text">Artistry</span> <br />
             For Every Moment
           </h1>
           <p className={styles.subtitle}>
@@ -94,7 +94,7 @@ export default function Home() {
       {/* Product Section */}
       <section className={styles.productSection}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Featured <span className="gold-text">Collections</span></h2>
+          <h2 className={styles.sectionTitle}>Featured <span className="mono-text">Collections</span></h2>
           <p className={styles.sectionSubtitle}>Find the perfect match for your home artistry.</p>
         </div>
         <div className={styles.productGrid}>
@@ -107,7 +107,7 @@ export default function Home() {
       {/* Testimonials */}
       <section className={styles.testimonialSection}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Client <span className="gold-text">Voices</span></h2>
+          <h2 className={styles.sectionTitle}>Client <span className="mono-text">Voices</span></h2>
         </div>
         <div className={styles.testimonialGrid}>
           {[1, 2, 3].map((i) => (
@@ -131,7 +131,7 @@ export default function Home() {
       <footer className={styles.footer}>
         <div className={styles.footerGrid}>
           <div className={styles.footerBrand}>
-            <h2 className="gold-text">FLORA</h2>
+            <h2 className="mono-text">FLORA</h2>
             <p>Defining your space, living well. Luxury floral artistry for the modern home.</p>
           </div>
           <div className={styles.footerLinks}>
