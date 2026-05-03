@@ -62,7 +62,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </Link>
         <div className="mt-2 flex items-center justify-between">
           <span className="text-lg font-bold text-zinc-900 dark:text-white">
-            ${product.price.toLocaleString()}
+            ${new Intl.NumberFormat('en-US').format(product.price)}
           </span>
           <button
             onClick={handleAddToCart}

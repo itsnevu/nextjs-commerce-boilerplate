@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --bg-main: #0a0a0b;
   --bg-card: rgba(20, 20, 22, 0.7);

@@ -59,7 +59,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               {product.name}
             </h1>
             <p className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
-              ${Number(product.price).toLocaleString()}
+              ${new Intl.NumberFormat('en-US').format(Number(product.price))}
             </p>
             <div className="prose dark:prose-invert max-w-none mb-8 text-zinc-600 dark:text-zinc-400">
               {product.description}
