@@ -1,0 +1,109 @@
+.main {
+  min-height: 100vh;
+  padding: 8rem 2rem;
+  background: white;
+}
+
+.header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 6rem;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  line-height: 1;
+}
+
+.subtitle {
+  color: #71717a;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.item {
+  border-bottom: 2px solid #f4f4f5;
+  padding-bottom: 2rem;
+}
+
+.question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.question h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: black;
+}
+
+.icon {
+  transition: transform 0.3s ease;
+  color: #a1a1aa;
+}
+
+.active .icon {
+  transform: rotate(45deg);
+  color: black;
+}
+
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+}
+
+.active .answer {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 1.5rem;
+}
+
+.answer p {
+  color: #52525b;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.cta {
+  margin-top: 8rem;
+  text-align: center;
+  padding: 4rem;
+  background: #fafafa;
+  border: 1px solid #f4f4f5;
+}
+
+.cta h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  color: #71717a;
+  margin-bottom: 2rem;
+}
